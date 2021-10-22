@@ -26,8 +26,6 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-      env:
-        SUPER_SECRET: ${{ secrets.KEY }}
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
@@ -35,4 +33,4 @@ jobs:
 
       # Runs a set of commands using the runners shell
       - name: Run a tests
-        run: SECRET_KEY="$env:SUPER_SECRET" npm run test
+        run: SECRET_KEY='${{ secrets.KEY }}' npm run test
