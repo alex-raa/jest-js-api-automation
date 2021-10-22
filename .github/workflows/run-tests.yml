@@ -33,4 +33,4 @@ jobs:
 
       # Runs a set of commands using the runners shell
       - name: Run a tests
-        run: SECRET_KEY='${{ secrets.KEY }}' npm run test
+        run: SECRET_KEY='${{secrets.KEY}}' npm run test
