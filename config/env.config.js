@@ -12,5 +12,9 @@ export const CONFIG = cleanEnv(process.env, {
     S_KEY: str({
       default: process.env.SECRET_KEY,
       desc: "secret key from github"
+    }),
+    NEW_KEY: str({
+      default: process.env.NEW_KEY,
+      desc: "secret key"
     })
 });
