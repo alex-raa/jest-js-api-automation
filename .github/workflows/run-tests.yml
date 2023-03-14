@@ -45,8 +45,7 @@ jobs:
     needs: build
 
     steps:
-      - env:
-          OUTPUT1: ${{needs.job1.outputs.output1}}
-          
       - name: Print reuslts
+        env:
+          OUTPUT1: ${{needs.job1.outputs.output1}}
         run: echo "$OUTPUT1"
