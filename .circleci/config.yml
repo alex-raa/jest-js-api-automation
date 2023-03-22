@@ -21,7 +21,7 @@ workflows:
     #       pkg-manager: npm
 
     jobs:
-      build_and_test: # this can be any name you choose
+      # build_and_test: # this can be any name you choose
       executor: node/default # use the default executor defined within the orb
         steps:
           - checkout
