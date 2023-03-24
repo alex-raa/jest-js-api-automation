@@ -1,19 +1,20 @@
 version: 2.1
 
 orbs:
-  node: circleci/node@5.1.0
+  node: circleci/node@4.0.0
 
 jobs:
-  run-tests:
+  build:
     executor: node/default
     steps:
       - checkout
-      - node/install-packages:
-          pkg-manager: npm
-      - run: npm install
-      - run: npm test
+      - node/install-packages
+      - run:
+          name: Run tests
+          command: npm test
 
 workflows:
-  my-custom-workflow:
+  version: 2
+  build-and-test:
     jobs:
-      - run-tests
+      - build
