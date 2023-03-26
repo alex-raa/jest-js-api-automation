@@ -19,4 +19,11 @@ jobs:
         run: npm install
       
       - name: Run Tests
-        run: npm run test >> otput.txt
+        run: |
+          npm run test > output.txt
+          log_output=$(cat output.txt)
+          
+      - name: Print value
+        id: step_two
+        run: |
+          echo "$log_output"
