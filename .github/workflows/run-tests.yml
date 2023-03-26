@@ -37,9 +37,8 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Run a tests
         id: run-test 
-        run: |
-          output=$(npm run test)
-          echo "MY_OUTPUT=$output" >> $GITHUB_ENV
+        run: output=$(npm run test)
+#          echo "MY_OUTPUT=$output" >> $GITHUB_ENV
 #         run: npm run test
 #          SECRET_KEY="${{secrets.KEY}}" npm run test
 #          npm run test
