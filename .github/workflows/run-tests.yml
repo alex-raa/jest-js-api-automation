@@ -24,8 +24,6 @@ jobs:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
     continue-on-error: true
-    outputs:
-      output1: ${{ steps.run-test.outputs.stdout }}
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -44,13 +42,15 @@ jobs:
 #          SECRET_KEY="${{secrets.KEY}}" npm run test
 #          npm run test
 #         run: echo "test=hello" >> "$GITHUB_OUTPUT"
-        env:
-          MY_OUTPUT: ${{ steps.run_test.outputs.stdout }}
-      - name: print run_tests step output
-        if: always()
-        run: |
-          echo "Output: $MY_OUTPUT"
-          echo "$output1"
+#         env:
+#           MY_OUTPUT: ${{ steps.run_test.outputs.stdout }}
+        outputs:
+          output1: ${{ steps.run-test.outputs.stdout }}
+#       - name: print run_tests step output
+#         if: always()
+#         run: |
+#           echo "Output: $MY_OUTPUT"
+#           echo "$output1"
 # ------------------------------------------------------
 #       - name: Dump GitHub context
 #         env:
@@ -64,7 +64,8 @@ jobs:
         env:
 #           STEPS_CONTEXT: ${{ toJson(steps) }}
           STEPS_CONTEXT: ${{ steps.run_test.outputs.stdout }}
-        run: echo "$STEPS_CONTEXT"
+#         run: echo "$STEPS_CONTEXT"
+        run: echo "$output1"
 #       - name: Dump runner context
 #         env:
 #           RUNNER_CONTEXT: ${{ toJson(runner) }}
