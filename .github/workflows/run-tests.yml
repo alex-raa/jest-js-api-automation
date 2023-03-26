@@ -62,12 +62,18 @@ jobs:
 #         env:
 #           JOB_CONTEXT: ${{ toJson(job) }}
 #         run: echo "$JOB_CONTEXT"
-      - name: Dump steps context
-        env:
+# -----
+#       - name: Dump steps context
+#         env:
+# -----
 #           STEPS_CONTEXT: ${{ toJson(steps) }}
-          STEPS_CONTEXT: ${{ steps.run_test.outputs.stdout }}
+# -----
+#          STEPS_CONTEXT: ${{ steps.run_test.outputs.stdout }}
+# -----
 #         run: echo "$STEPS_CONTEXT"
-        run: echo "$MY_OUTPUT"
+# -----
+#        run: echo "$MY_OUTPUT"
+# -----
 #       - name: Dump runner context
 #         env:
 #           RUNNER_CONTEXT: ${{ toJson(runner) }}
