@@ -39,7 +39,7 @@ jobs:
         id: run-test 
         run: |
           output=$(npm run test)
-          echo "::set-env name=MY_OUTPUT::$output"
+          echo "MY_OUTPUT=$output" >> $GITHUB_ENV
 #         run: npm run test
 #          SECRET_KEY="${{secrets.KEY}}" npm run test
 #          npm run test
