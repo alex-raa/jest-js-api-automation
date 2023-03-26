@@ -4,7 +4,7 @@ const config = {
     verbose: true,
     testTimeout: timeout,
     setupFiles: ["dotenv/config"],
-    reporters: ["default", "jest-allure"]
+    reporters: ["default"]
 };
   
 module.exports = config;
