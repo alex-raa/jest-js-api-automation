@@ -1,29 +1,111 @@
+# This is a basic workflow to help you get started with Actions
+
 name: CI
 
+# Controls when the workflow will run
 on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+#   push:
+#     branches: [ main ]
+#   pull_request:
+#     branches: [ main ]
+#   schedule:
+#     - cron: '0 0 * * *'
+  repository_dispatch:
+    types: [circle_ci]
+
+  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  test:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
     runs-on: ubuntu-latest
+    continue-on-error: true
 
+    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-      - name: Use Node.js 16
-        uses: actions/setup-node@v2
-        with:
-          node-version: '16'
-          
-      - name: Install dependencies
+      # Runs a single command using the runners shell
+      - name: Run a one-line script
         run: npm install
-      
-      - name: Run Tests
-        run: |
-          npm run test > output.txt
-          log_output=$(cat output.txt)
-          
-      - name: Print value
-        id: step_two
-        run: |
-          echo "$log_output"
+
+      # Runs a set of commands using the runners shell
+      - name: Run a tests
+        id: run-test 
+        run: output=$(npm run test)
+      - name: Save output to ENV var
+        id: save-output
+        run: echo "action_state=yellow" >> $GITHUB_ENV
+#         run: echo "MY_OUTPUT=$output" >> $GITHUB_ENV
+#          echo "MY_OUTPUT=$output" >> $GITHUB_ENV
+#         run: npm run test
+#          SECRET_KEY="${{secrets.KEY}}" npm run test
+#          npm run test
+#         run: echo "test=hello" >> "$GITHUB_OUTPUT"
+#         env:
+#           MY_OUTPUT: ${{ steps.run_test.outputs.stdout }}
+#         outputs:
+#           output1: ${{ steps.run-test.outputs.stdout }}
+      - name: print run_tests step output(echo "$output")
+        if: always()
+#         run: echo ${{ toJson(output) }}
+        run: echo "${{ env.action_state }}"
+# ------------------------------------------------------
+#       - name: Dump GitHub context
+#         env:
+#           GITHUB_CONTEXT: ${{ toJson(github) }}
+#         run: echo "$GITHUB_CONTEXT"
+#       - name: Dump job context
+#         env:
+#           JOB_CONTEXT: ${{ toJson(job) }}
+#         run: echo "$JOB_CONTEXT"
+# -----
+#       - name: Dump steps context
+#         env:
+# -----
+#           STEPS_CONTEXT: ${{ toJson(steps) }}
+# -----
+#          STEPS_CONTEXT: ${{ steps.run_test.outputs.stdout }}
+# -----
+#         run: echo "$STEPS_CONTEXT"
+# -----
+#        run: echo "$MY_OUTPUT"
+# -----
+#       - name: Dump runner context
+#         env:
+#           RUNNER_CONTEXT: ${{ toJson(runner) }}
+#         run: echo "$RUNNER_CONTEXT"
+#       - name: Dump strategy context
+#         env:
+#           STRATEGY_CONTEXT: ${{ toJson(strategy) }}
+#         run: echo "$STRATEGY_CONTEXT"
+#       - name: Dump matrix context
+#         env:
+#           MATRIX_CONTEXT: ${{ toJson(matrix) }}
+#         run: echo "$MATRIX_CONTEXT"
+
+#       - name: Show default environment variables
+#         run: |
+#           echo "The job_id is: $GITHUB_JOB"   # reference the default environment variables
+#           echo "The id of this action is: $GITHUB_ACTION"   # reference the default environment variables
+#           echo "The run id is: $GITHUB_RUN_ID"
+#           echo "The GitHub Actor's username is: $GITHUB_ACTOR"
+#           echo "GitHub SHA: $GITHUB_SHA"
+            
+# ------------------------------------------------------
+
+#   print:
+#     runs-on: ubuntu-latest
+#     continue-on-error: true
+#     needs: build
+
+#     steps:
+#       - name: Print reuslts
+#         env:
+#           OUTPUT1: ${{needs.job1.outputs.output1}}
+#         run: echo "$OUTPUT1"
