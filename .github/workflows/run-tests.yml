@@ -1,6 +1,7 @@
-name: Node.js Tests
+name: CI
 
-on: [pull_request]
+on:
+  workflow_dispatch:
 
 jobs:
   test:
