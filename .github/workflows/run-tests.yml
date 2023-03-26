@@ -19,12 +19,4 @@ jobs:
         run: npm install
       
       - name: Run Tests
-        run: |
-          output=$(npm run test)
-          echo "Output: $output"
-          echo "MY_OUTPUT=$output" >> $GITHUB_ENV
-      - name: Print Output
-        run: |
-          echo "Output: $MY_OUTPUT"
-#         env:
-#           MY_OUTPUT: ${{ env.MY_OUTPUT }}
+        run: npm run test >> otput.txt
