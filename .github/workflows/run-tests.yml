@@ -50,11 +50,9 @@ jobs:
 #           MY_OUTPUT: ${{ steps.run_test.outputs.stdout }}
 #         outputs:
 #           output1: ${{ steps.run-test.outputs.stdout }}
-#       - name: print run_tests step output
-#         if: always()
-#         run: |
-#           echo "Output: $MY_OUTPUT"
-#           echo "$output1"
+      - name: print run_tests step output
+        if: always()
+        run: echo "$MY_OUTPUT"
 # ------------------------------------------------------
 #       - name: Dump GitHub context
 #         env:
