@@ -26,5 +26,5 @@ jobs:
       - name: Print Output
         run: |
           echo "Output: $MY_OUTPUT"
-        env:
-          MY_OUTPUT: ${{ env.MY_OUTPUT }}
+#         env:
+#           MY_OUTPUT: ${{ env.MY_OUTPUT }}
