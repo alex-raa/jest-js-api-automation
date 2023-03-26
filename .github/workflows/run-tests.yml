@@ -38,6 +38,9 @@ jobs:
       - name: Run a tests
         id: run-test 
         run: output=$(npm run test)
+      - name: Save output to ENV var
+        id: save-output
+        run: echo "MY_OUTPUT=$output" >> $GITHUB_ENV
 #          echo "MY_OUTPUT=$output" >> $GITHUB_ENV
 #         run: npm run test
 #          SECRET_KEY="${{secrets.KEY}}" npm run test
