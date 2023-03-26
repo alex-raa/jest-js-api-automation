@@ -40,7 +40,7 @@ jobs:
         run: output=$(npm run test)
       - name: Save output to ENV var
         id: save-output
-        run: echo "${{ env.action_state }}"
+        run: echo "action_state=yellow" >> $GITHUB_ENV
 #         run: echo "MY_OUTPUT=$output" >> $GITHUB_ENV
 #          echo "MY_OUTPUT=$output" >> $GITHUB_ENV
 #         run: npm run test
@@ -54,7 +54,7 @@ jobs:
       - name: print run_tests step output(echo "$output")
         if: always()
 #         run: echo ${{ toJson(output) }}
-        run: echo "action_state=yellow" >> $GITHUB_ENV
+        run: echo "${{ env.action_state }}"
 # ------------------------------------------------------
 #       - name: Dump GitHub context
 #         env:
