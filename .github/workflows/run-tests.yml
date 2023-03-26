@@ -52,7 +52,7 @@ jobs:
 #           output1: ${{ steps.run-test.outputs.stdout }}
       - name: print run_tests step output(echo "$output")
         if: always()
-        run: echo "$output"
+        run: echo ${{ toJson(output) }}
 # ------------------------------------------------------
 #       - name: Dump GitHub context
 #         env:
