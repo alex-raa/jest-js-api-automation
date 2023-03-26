@@ -39,11 +39,11 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Run a tests
         id: run-test 
-        run: |
+#         run: |
+        run: npm run test
 #          SECRET_KEY="${{secrets.KEY}}" npm run test
-          npm run test
-          echo 
-#          run: echo "test=hello" >> "$GITHUB_OUTPUT"
+#          npm run test
+#         run: echo "test=hello" >> "$GITHUB_OUTPUT"
         env:
           MY_OUTPUT: ${{ steps.run_test.outputs.stdout }}
       - name: print run_tests step output
