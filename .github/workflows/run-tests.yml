@@ -25,7 +25,7 @@ jobs:
     runs-on: ubuntu-latest
     continue-on-error: true
     outputs:
-      output1: ${{ steps.run-test.outputs.test }}
+      output1: ${{ steps.run-test.outputs.stdout }}
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -50,7 +50,7 @@ jobs:
         if: always()
         run: |
           echo "Output: $MY_OUTPUT"
-          echo "$simple_var"
+          echo "$output1"
         
 #   print:
 #     runs-on: ubuntu-latest
